@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
 
     // Sonido muerte
     public AudioClip deathSound;
+    // Sonido ataque
+    public AudioClip attackSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -87,7 +89,7 @@ public class Player : MonoBehaviour
         // Cambiar velocidad horizontal del jugador
         rb2D.linearVelocity = new Vector2(move * speed, rb2D.linearVelocity.y);
     
-        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Z)) && isGrounded) {
+        if (((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded) {
             AudioSource.PlayClipAtPoint(jumpSound, transform.position);
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, jumpForce);
         }
@@ -107,6 +109,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             anim.SetTrigger("Kick");
+            AudioSource.PlayClipAtPoint(attackSound, transform.position);
 
             Collider2D collider = Physics2D.OverlapCircle(
                 attackPoint.position,
