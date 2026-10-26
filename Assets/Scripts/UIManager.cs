@@ -7,6 +7,10 @@ public class UIManager : MonoBehaviour
     public AudioSource music;
     public GameObject panelReiniciar;
     public TMP_Text coinText;
+    public TMP_Text vidasText;
+    public TMP_Text corazonesText;
+    public int numCorazones = 4;
+    public int numVidas = 3;
     public int totalCoins = 0;
     public int collectedCoins = 0;
 
@@ -19,6 +23,8 @@ public class UIManager : MonoBehaviour
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
         totalCoins = coins.Length;
         UpdateCoinText();
+        UpdateCorazonesText();
+        UpdateVidasText();
     }
 
     public void MostrarMenu()
@@ -38,6 +44,45 @@ public class UIManager : MonoBehaviour
     private void UpdateCoinText()
     {
         coinText.text = $"Monedas: {collectedCoins} / {totalCoins}";     
+    }
+
+    public void perderCorazon()
+    {
+        if (numCorazones > 0)
+        {
+            numCorazones--;
+            UpdateCorazonesText();    
+        }
+        
+    }
+
+    public void conseguirCorazon()
+    {
+        if (numCorazones < 4)
+        {
+            numCorazones++;
+            UpdateCorazonesText();
+        }
+        
+    }
+
+    public void perderVida()
+    {
+        if (numVidas > 0)
+        {
+            numVidas--;
+            UpdateVidasText();
+        }
+    }
+
+    private void UpdateCorazonesText()
+    {
+        corazonesText.text = $"Corazones: {numCorazones} / 4";
+    }
+    
+    private void UpdateVidasText()
+    {
+        vidasText.text = $"Vidas: {numVidas} / 3";
     }
     
     public void ReiniciarNivel()

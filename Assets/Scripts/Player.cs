@@ -166,6 +166,7 @@ public class Player : MonoBehaviour
         Enemy enemy = collision.GetComponent<Enemy>();
         if(enemy != null)
         {
+            uiManager.perderCorazon();
             recibirGolpe();
         }
     }
@@ -201,7 +202,7 @@ public class Player : MonoBehaviour
         rb2D.linearVelocity = Vector2.zero;
 
         anim.SetTrigger("Death");
-        
+        uiManager.perderVida();
         uiManager.mostrarPanelReiniciar();
     }
     
