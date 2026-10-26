@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public AudioSource music;
-    private GameObject botonReiniciar;
+    public GameObject panelReiniciar;
     public TMP_Text coinText;
     public int totalCoins = 0;
     public int collectedCoins = 0;
@@ -13,8 +14,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         music.Play();
-        botonReiniciar = GameObject.FindGameObjectWithTag("Reiniciar");
-        botonReiniciar.SetActive(false);
+        panelReiniciar = GameObject.FindGameObjectWithTag("PanelReiniciar");
+        panelReiniciar.SetActive(false);
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
         totalCoins = coins.Length;
         UpdateCoinText();
@@ -30,13 +31,18 @@ public class UIManager : MonoBehaviour
         UpdateCoinText();
     }
 
-    public void mostrarBotonReiniciar()
+    public void mostrarPanelReiniciar()
     {
-        botonReiniciar.SetActive(true);
+        panelReiniciar.SetActive(true);
     }
     private void UpdateCoinText()
     {
         coinText.text = $"Monedas: {collectedCoins} / {totalCoins}";     
+    }
+    
+    public void ReiniciarNivel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Update is called once per frame

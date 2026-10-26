@@ -8,7 +8,6 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
-    private int numVidas;
     private int golpesRestantes;
     private bool isCrouching;
     private UIManager uiManager;
@@ -65,7 +64,6 @@ public class Player : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         isCrouching = false;
-        numVidas = 3;
         golpesRestantes = 3;
     }
 
@@ -178,23 +176,14 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        
+
         if (golpesRestantes > 0)
         {
             anim.SetTrigger("Hurt");
             golpesRestantes--;
         }
-        else
-        {
-            if (numVidas > 0)
-            {
-                numVidas--;
-                golpesRestantes = 3;
-            }
-            else
-            {
-                Morir();
-            }
+        else{
+            Morir();
         }
     }
     
@@ -213,7 +202,7 @@ public class Player : MonoBehaviour
 
         anim.SetTrigger("Death");
         
-        uiManager.mostrarBotonReiniciar();
+        uiManager.mostrarPanelReiniciar();
     }
     
     public void Destruir()

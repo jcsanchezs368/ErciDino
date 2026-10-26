@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Floor
+  - Enemy
+  - PanelReiniciar
   layers:
   - Default
   - TransparentFX
