@@ -589,9 +589,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bc941aa48b0179a20800000000000000
+      spriteID: db66dd929b1d0e64f8102ece2addd246
       internalID: 3068940054788393419
       vertices: []
       indices: 
@@ -611,9 +611,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b3b80ee0dff809c20800000000000000
+      spriteID: 2bdd9326fee5cad41aca70dccfff240b
       internalID: 3211224851354258235
       vertices: []
       indices: 
@@ -633,9 +633,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d9ad0e532bd94dd0800000000000000
+      spriteID: 8be9d2c632b58714392572cacf8069af
       internalID: -2501227173079307821
       vertices: []
       indices: 
@@ -655,9 +655,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 15d3d13525cc69940800000000000000
+      spriteID: ae7f2aa695ae8fb4a9b2010da9eb2123
       internalID: 5302650265229147473
       vertices: []
       indices: 
@@ -677,9 +677,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40dc745a52d20d6d0800000000000000
+      spriteID: 73ce833f878f62c4296feae161379e93
       internalID: -2967822514727170812
       vertices: []
       indices: 
@@ -699,9 +699,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e88f97f806537d7d0800000000000000
+      spriteID: 9fcf0fa2e8f7c0d4b858f1922c344581
       internalID: -2893785546721986418
       vertices: []
       indices: 
