@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb83f515f22858c42ba6632c6902fbc1
+guid: 62cf39bba3a12ec46b77354b76dc0c6c
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -423,11 +423,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: jellyfish_13
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e9a24294b28c84ab9b783b28b97b44
+      internalID: 1020879830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 32330e71c7ca928409d748d7cfdc17ed
+    spriteID: 80f9bcdb21e9bc645a65c7bcf05a2e78
     internalID: 0
     vertices: []
     indices: 
@@ -444,6 +466,7 @@ TextureImporter:
       jellyfish_10: 7071963686450535642
       jellyfish_11: -1190368948356320760
       jellyfish_12: 7940747477317931696
+      jellyfish_13: 1020879830
       jellyfish_2: -78061990173016979
       jellyfish_3: -8645975425499938103
       jellyfish_4: 2386596962174979442

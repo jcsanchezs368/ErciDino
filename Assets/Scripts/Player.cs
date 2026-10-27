@@ -8,7 +8,6 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
-    private int golpesRestantes;
     private bool isCrouching;
     private UIManager uiManager;
     // Velocidad del jugador
@@ -28,8 +27,14 @@ public class Player : MonoBehaviour
     private float move;
     // Componente del jugador (Player)
     private Rigidbody2D rb2D;
+    
+    
 
     public Animator anim;
+    
+    public float esperaAtaque = 0.5f;
+
+    private float siguienteAtaque = 0f;
 
     // PROYECTIL
     public GameObject projectilePrefab;
@@ -55,7 +60,8 @@ public class Player : MonoBehaviour
     public AudioClip deathSound;
     // Sonido ataque
     public AudioClip attackSound;
-
+    
+    public AudioClip hitSound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -64,7 +70,6 @@ public class Player : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         isCrouching = false;
-        golpesRestantes = 3;
     }
 
     // Update is called once per frame
@@ -104,8 +109,10 @@ public class Player : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
 
         // Golpear
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && Time.time >= siguienteAtaque)
         {
+            siguienteAtaque = Time.time + esperaAtaque;
+
             anim.SetTrigger("Kick");
             AudioSource.PlayClipAtPoint(attackSound, transform.position);
 
@@ -118,7 +125,7 @@ public class Player : MonoBehaviour
             if (collider != null)
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
-                
+
                 if (enemy != null)
                 {
                     enemy.RecibirGolpe();
@@ -147,11 +154,16 @@ public class Player : MonoBehaviour
 
     private void LanzarObjeto()
     {
-        AudioSource.PlayClipAtPoint(shootProjectile, transform.position);
-        GameObject projectile = 
-        Instantiate(projectilePrefab, throwPoint.position, Quaternion.identity);
+        if (uiManager.numProyectiles > 0)
+        {
+            AudioSource.PlayClipAtPoint(shootProjectile, transform.position);
+            GameObject projectile = 
+                Instantiate(projectilePrefab, throwPoint.position, Quaternion.identity);
 
-        projectile.GetComponent<Projectile>().Lanzar(Mathf.Sign(direccionMirada));
+            projectile.GetComponent<Projectile>().Lanzar(Mathf.Sign(direccionMirada));
+            uiManager.dispararProyectil();
+        }
+
     }
 
     private void FixedUpdate()
@@ -159,15 +171,19 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
     }
-
+    
     // MATAR AL JUGADOR
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if(enemy != null)
+        if(collision.CompareTag("Enemy"))
         {
-            uiManager.perderCorazon();
+            Enemy enemy = collision.GetComponent<Enemy>();
+            enemy.Atacar();
             recibirGolpe();
+        }else if (collision.CompareTag("Killzone"))
+        {
+            uiManager.perderVida();
+            Morir();
         }
     }
 
@@ -178,12 +194,14 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (golpesRestantes > 0)
+        if (uiManager.numCorazones > 1)
         {
+            AudioSource.PlayClipAtPoint(hitSound, transform.position);
             anim.SetTrigger("Hurt");
-            golpesRestantes--;
+            uiManager.perderCorazon();
         }
         else{
+            uiManager.perderCorazon();
             Morir();
         }
     }
@@ -201,9 +219,20 @@ public class Player : MonoBehaviour
 
         rb2D.linearVelocity = Vector2.zero;
 
-        anim.SetTrigger("Death");
-        uiManager.perderVida();
-        uiManager.mostrarPanelReiniciar();
+        anim.SetBool("IsDead", true);
+        if (uiManager.numVidas >= 0)
+        {
+            uiManager.perderVida();
+        }
+    }
+
+    public void Reaparecer()
+    {
+        uiManager.numCorazones = 3;
+        uiManager.UpdateCorazonesText();
+        muerto = false;
+        anim.SetBool("IsDead", false);
+        gameObject.transform.position = new Vector3(0f, 0f, 0f);
     }
     
     public void Destruir()

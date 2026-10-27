@@ -3,21 +3,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
 
     // Movimiento del enemigo
     public Transform puntoA;
     public Transform puntoB;
     public float speed = 0.5f;
     public Transform objetivo;
+    public AudioClip attackSound;
+
+    
 
     // Vida del Enemigo
-    public int vida = 5;
+    public int vida;
 
     public bool isDead = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Start()
     {
         anim = GetComponent<Animator>();
         objetivo = puntoB;
@@ -60,11 +63,6 @@ public class Enemy : MonoBehaviour
         }
         
     }
-
-    public void Atacar()
-    {
-        
-    }
     
     public void RecibirGolpe()
     {
@@ -74,8 +72,14 @@ public class Enemy : MonoBehaviour
             Morir();
         }
     }
+    public void Atacar()
+    {
+        anim.SetTrigger("Attack");
+        AudioSource.PlayClipAtPoint(attackSound, transform.position);
+        
+    }
 
-    public void Morir(){
+    public virtual void Morir(){
         
         transform.position = new Vector3(
             transform.position.x,

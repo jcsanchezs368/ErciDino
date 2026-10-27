@@ -6,18 +6,24 @@ public class UIManager : MonoBehaviour
 {
     public AudioSource music;
     public GameObject panelReiniciar;
+    public GameObject botonReiniciar;
+    public TMP_Text proyectileText;
     public TMP_Text coinText;
     public TMP_Text vidasText;
     public TMP_Text corazonesText;
-    public int numCorazones = 4;
+    public int numCorazones = 3;
     public int numVidas = 3;
+    public int numProyectiles = 10;
     public int totalCoins = 0;
-    public int collectedCoins = 0;
+    public int collectedCoins = 0; 
+    private Player player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         music.Play();
+        botonReiniciar = GameObject.FindGameObjectWithTag("BotonReiniciar");
+        botonReiniciar.SetActive(true);
         panelReiniciar = GameObject.FindGameObjectWithTag("PanelReiniciar");
         panelReiniciar.SetActive(false);
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
@@ -25,6 +31,8 @@ public class UIManager : MonoBehaviour
         UpdateCoinText();
         UpdateCorazonesText();
         UpdateVidasText();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        
     }
 
     public void MostrarMenu()
@@ -35,6 +43,26 @@ public class UIManager : MonoBehaviour
     {
         collectedCoins++;
         UpdateCoinText();
+    }
+
+
+    public void dispararProyectil()
+    {
+        if (numProyectiles > 0)
+        {
+            numProyectiles--;
+            UpdateNumProyectiles();
+        }
+
+    }
+    public void recargarProyectiles()
+    {
+        numProyectiles = 10;
+        UpdateNumProyectiles();
+    }
+    public void UpdateNumProyectiles()
+    {
+        proyectileText.text = $"x{numProyectiles}";
     }
 
     public void mostrarPanelReiniciar()
@@ -53,12 +81,11 @@ public class UIManager : MonoBehaviour
             numCorazones--;
             UpdateCorazonesText();    
         }
-        
     }
 
     public void conseguirCorazon()
     {
-        if (numCorazones < 4)
+        if (numCorazones < 3)
         {
             numCorazones++;
             UpdateCorazonesText();
@@ -72,12 +99,18 @@ public class UIManager : MonoBehaviour
         {
             numVidas--;
             UpdateVidasText();
+            mostrarPanelReiniciar();
+        }
+        else
+        {
+            mostrarPanelReiniciar();
+            botonReiniciar.SetActive(false);
         }
     }
 
-    private void UpdateCorazonesText()
+    public void UpdateCorazonesText()
     {
-        corazonesText.text = $"Corazones: {numCorazones} / 4";
+        corazonesText.text = $"Corazones: {numCorazones} / 3";
     }
     
     private void UpdateVidasText()
@@ -87,7 +120,13 @@ public class UIManager : MonoBehaviour
     
     public void ReiniciarNivel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        panelReiniciar.SetActive(false);
+        player.Reaparecer();
+    }
+
+    public void MenuPrincipal()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     // Update is called once per frame

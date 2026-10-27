@@ -1,26 +1,14 @@
 using System.Threading;
 using UnityEngine;
 
-public class EnemyJellyfish : MonoBehaviour
+public class EnemyJellyfish : Enemy
 {
-    private Animator anim;
-
-    // Movimiento del enemigo
-    public Transform puntoA;
-    public Transform puntoB;
-    public float speed = 0.5f;
-    public Transform objetivo;
-
-    // Vida del Enemigo
-    public int vida = 5;
-
-    public bool isDead = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        anim = GetComponent<Animator>();
-        objetivo = puntoB;
+        base.Start();
+        vida = 2;
     }
 
     // Update is called once per frame
@@ -62,11 +50,12 @@ public class EnemyJellyfish : MonoBehaviour
         
     }
 
-    public void Atacar()
+    public Animator Anim
     {
-        
+        get => anim;
+        set => anim = value;
     }
-    
+
     public void RecibirGolpe()
     {
         vida--;
@@ -75,8 +64,7 @@ public class EnemyJellyfish : MonoBehaviour
             Morir();
         }
     }
-
-    public void Morir(){
+    public override void Morir(){
         
         GetComponent<Collider2D>().enabled = false;
         anim.SetTrigger("Death");

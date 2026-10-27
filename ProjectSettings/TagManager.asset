@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - PanelReiniciar
   - Coin
+  - Killzone
+  - PanelGameOver
+  - BotonReiniciar
+  - BotonComenzar
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - Floor
   - Water
   - UI
-  - 
+  - EnemyLayer
   - 
   - 
   - 

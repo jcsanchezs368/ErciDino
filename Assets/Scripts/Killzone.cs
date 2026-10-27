@@ -8,8 +8,7 @@ public class Killzone : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             // Reiniciar el nivel
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
         }
     }
 }

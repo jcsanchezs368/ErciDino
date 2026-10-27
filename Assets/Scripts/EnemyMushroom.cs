@@ -1,26 +1,13 @@
 using System.Threading;
 using UnityEngine;
 
-public class EnemyMushroom : MonoBehaviour
+public class EnemyMushroom : Enemy
 {
-    private Animator anim;
-
-    // Movimiento del enemigo
-    public Transform puntoA;
-    public Transform puntoB;
-    public float speed = 0.5f;
-    public Transform objetivo;
-
-    // Vida del Enemigo
-    public int vida = 5;
-
-    public bool isDead = false;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        anim = GetComponent<Animator>();
-        objetivo = puntoB;
+        base.Start();
+        vida = 6;
     }
 
     // Update is called once per frame
@@ -58,11 +45,6 @@ public class EnemyMushroom : MonoBehaviour
         {
             anim.SetBool("IsMoving", true);
         }
-        
-    }
-
-    public void Atacar()
-    {
         
     }
     
