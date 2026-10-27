@@ -4,18 +4,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Animator anim;
-
     // Movimiento del enemigo
     public Transform puntoA;
     public Transform puntoB;
     public float speed = 0.5f;
     public Transform objetivo;
-    public AudioClip attackSound;
-
-    
 
     // Vida del Enemigo
-    public int vida;
+    public int vida = 5;
 
     public bool isDead = false;
 
@@ -63,6 +59,11 @@ public class Enemy : MonoBehaviour
         }
         
     }
+
+    public void Atacar()
+    {
+        
+    }
     
     public void RecibirGolpe()
     {
@@ -72,18 +73,12 @@ public class Enemy : MonoBehaviour
             Morir();
         }
     }
-    public void Atacar()
-    {
-        anim.SetTrigger("Attack");
-        AudioSource.PlayClipAtPoint(attackSound, transform.position);
-        
-    }
-
+    
     public virtual void Morir(){
         
         transform.position = new Vector3(
             transform.position.x,
-            transform.position.y - 0.7f,
+            transform.position.y - 0.5f,
             transform.position.z
         );
         GetComponent<Collider2D>().enabled = false;

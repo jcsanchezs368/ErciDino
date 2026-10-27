@@ -12,6 +12,7 @@ TagManager:
   - PanelGameOver
   - BotonReiniciar
   - BotonComenzar
+  - PanelFin
   layers:
   - Default
   - TransparentFX

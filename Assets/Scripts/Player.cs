@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
         uiManager.UpdateCorazonesText();
         muerto = false;
         anim.SetBool("IsDead", false);
-        gameObject.transform.position = new Vector3(0f, 0f, 0f);
+        gameObject.transform.position = new Vector3(0f, 2f, 0f);
     }
     
     public void Destruir()

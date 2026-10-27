@@ -5,7 +5,7 @@ public class EndLevel : MonoBehaviour
 {
     UIManager uiManager;
     public string siguienteNivel;
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -14,7 +14,15 @@ public class EndLevel : MonoBehaviour
             {
                 if (uiManager.collectedCoins >= 5)
                 {
-                    JugarNivel(siguienteNivel);
+                    if (siguienteNivel.Equals("4"))
+                    {
+                        JugarNivel("PanelFin");
+                    }
+                    else
+                    {
+                        JugarNivel(siguienteNivel);
+                    }
+                    
                 }
             
             }

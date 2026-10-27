@@ -82,7 +82,6 @@ public class UIManager : MonoBehaviour
             UpdateCorazonesText();    
         }
     }
-
     public void conseguirCorazon()
     {
         if (numCorazones < 3)

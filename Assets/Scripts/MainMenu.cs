@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject panelControles;
     public AudioSource music;
-    public GameObject botonComenzar;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         music.Play();
-        botonComenzar = GameObject.FindGameObjectWithTag("BotonComenzar");
+        panelControles.SetActive(false);
     }
 
     public void Comenzar()
@@ -23,6 +23,21 @@ public class MainMenu : MonoBehaviour
     public void Salir()
     {
         Application.Quit();
+    }
+
+    public void MenuPrincipal()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void MostrarPanelControles()
+    {
+        panelControles.SetActive(true);
+    }
+
+    public void OcultarPanelControles()
+    {
+        panelControles.SetActive(false);
     }
     
     // Update is called once per frame

@@ -179,7 +179,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.08506006}
+  m_Offset: {x: 0.04070568, y: 0.08506006}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -189,7 +189,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 1.9548799}
+  m_Size: {x: 0.7206745, y: 1.9548799}
   m_EdgeRadius: 0
 --- !u!114 &5080847450567128905
 MonoBehaviour:
@@ -208,6 +208,5 @@ MonoBehaviour:
   puntoB: {fileID: 0}
   speed: 0.5
   objetivo: {fileID: 0}
-  attackSound: {fileID: 8300000, guid: 0be36a8a471e0b44885dc330b62654d8, type: 3}
   vida: 20
   isDead: 0
