@@ -182,7 +182,6 @@ public class Player : MonoBehaviour
             recibirGolpe();
         }else if (collision.CompareTag("Killzone"))
         {
-            uiManager.perderVida();
             Morir();
         }
     }

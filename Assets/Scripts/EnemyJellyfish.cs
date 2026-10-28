@@ -49,21 +49,7 @@ public class EnemyJellyfish : Enemy
         }
         
     }
-
-    public Animator Anim
-    {
-        get => anim;
-        set => anim = value;
-    }
-
-    public void RecibirGolpe()
-    {
-        vida--;
-        if(vida <= 0)
-        {
-            Morir();
-        }
-    }
+    
     public override void Morir(){
         
         GetComponent<Collider2D>().enabled = false;

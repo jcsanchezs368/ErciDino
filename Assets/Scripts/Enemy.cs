@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public Transform puntoB;
     public float speed = 0.5f;
     public Transform objetivo;
+    public AudioClip attackSound;
+    
 
     // Vida del Enemigo
     public int vida = 5;
@@ -62,7 +64,8 @@ public class Enemy : MonoBehaviour
 
     public void Atacar()
     {
-        
+        anim.SetTrigger("Attack");
+        AudioSource.PlayClipAtPoint(attackSound, transform.position);
     }
     
     public void RecibirGolpe()
@@ -76,11 +79,6 @@ public class Enemy : MonoBehaviour
     
     public virtual void Morir(){
         
-        transform.position = new Vector3(
-            transform.position.x,
-            transform.position.y - 0.5f,
-            transform.position.z
-        );
         GetComponent<Collider2D>().enabled = false;
         anim.SetTrigger("Death");
         isDead = true;

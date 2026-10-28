@@ -16,7 +16,7 @@ public class EndLevel : MonoBehaviour
                 {
                     if (siguienteNivel.Equals("4"))
                     {
-                        JugarNivel("PanelFin");
+                        SceneManager.LoadScene("PanelFin");
                     }
                     else
                     {

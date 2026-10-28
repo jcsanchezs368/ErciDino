@@ -47,21 +47,12 @@ public class EnemyMushroom : Enemy
         }
         
     }
-    
-    public void RecibirGolpe()
-    {
-        vida--;
-        if(vida <= 0)
-        {
-            Morir();
-        }
-    }
 
-    public void Morir(){
+    public override void Morir(){
         
         transform.position = new Vector3(
             transform.position.x,
-            transform.position.y - 0.7f,
+            transform.position.y - 0.5f,
             transform.position.z
         );
         GetComponent<Collider2D>().enabled = false;
